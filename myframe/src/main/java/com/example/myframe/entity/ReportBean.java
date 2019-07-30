@@ -2,12 +2,16 @@ package com.example.myframe.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 
 @TableName("report")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ReportBean {
     @TableId
     private int id;
