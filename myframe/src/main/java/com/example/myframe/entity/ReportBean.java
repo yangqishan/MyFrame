@@ -11,7 +11,7 @@ import java.sql.Date;
 public class ReportBean {
     @TableId
     private int id;
-    private int user_Id;
+    private String name;
     private String subject;
     private String title;
     private int paperId;

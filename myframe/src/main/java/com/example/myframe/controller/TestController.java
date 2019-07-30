@@ -19,8 +19,10 @@ public class TestController {
     private BaseService baseService;
     @RequestMapping(value="/find")
     @ResponseBody
-    public void get(HttpServletRequest request){
+    public List<ReportBean> get(HttpServletRequest request){
         List<ReportBean> list=baseService.get();
         request.getSession().setAttribute("list",list);
+        //String list1=JsonUtil.toJson(list);
+        return list;
     }
 }

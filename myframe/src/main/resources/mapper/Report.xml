@@ -3,7 +3,17 @@
 <mapper namespace="com.example.myframe.dao.BaseDao">
 
     <select id="getAll" resultType="com.example.myframe.entity.ReportBean">
-        SELECT  * from report
+       SELECT
+	r.id as id,
+	u.NAME as name,
+	r.SUBJECT as subject,
+	r.title as title,
+	r.achievement as achievement,
+	r.addtime as addtime,
+	ranswer  as ranswer
+FROM
+	report r,
+	USER u
     </select>
 
 </mapper>
