@@ -11,7 +11,7 @@
     <script src="js/jquery.min.js"></script>
 </head>
 <body>
-<input type="submit" onclick="loading();" value="加载"/>
+<input type="submit" onclick="loading()" value="加载"/>
 <table>
     <tr class="layui-table">
         <td><input type="checkbox"/>全选/取消</td>
@@ -29,13 +29,13 @@
 <div id="table" style="display: none;">
     <table >
 
+
     </table>
 </div>
 <script type="text/javascript">
     var table=$("#table");
     var current=${current};
     var size=${size};
-    var bianhao=0;
    function loading() {
        table.empty();
         $.ajax({
@@ -47,13 +47,10 @@
                 size:size
             },
             success:function (data) {
-             //alert(data[0].achievement)
-
+             //alert(data[0].achievement
                for(var i=0;i<data.records.length;i++){
-                   bianhao++;
                    table.append('<tr class="layui-table" style="cursor:pointer" ondblclick="edit(this)">\n' +
                        '            <td><input type="checkbox"/></td>\n' +
-                       '            <td>'+bianhao+'</td>\n' +
                        '            <td>'+data.records[i].id+'</td>\n' +
                        '            <td>'+data.records[i].name+'</td>\n' +
                        '            <td>'+data.records[i].subject+'</td>\n' +
@@ -63,7 +60,7 @@
                        '            <td>'+data.records[i].ranswer+'</td>\n' +
                        '        </tr>')
                 }
-                table.append('<a href="#" onclick="loading();current--">上一页</a><a href="#" onclick="loading();current++">下一页</a>')
+                table.append('<a href="#" onclick="--current;loading();">上一页</a><a href="#" onclick="++current;loading();">下一页</a>')
                 table.slideDown();
             }
 

@@ -27,6 +27,7 @@ FROM
 		FROM
 		report r,
 		USER u
+		where r.user_id=u.id
 	</select>
 </mapper>
 
