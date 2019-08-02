@@ -2,9 +2,11 @@ package com.example.myframe.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.myframe.aop.Permission;
 import com.example.myframe.entity.ReportBean;
 import com.example.myframe.service.BaseService;
 import com.example.myframe.util.RedisUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
+@Slf4j
 public class TestController {
 
     private static  final Logger logger= LoggerFactory.getLogger(TestController.class);
@@ -44,4 +47,14 @@ public class TestController {
         request.setAttribute("total",iPage.getTotal());
         return iPage;
     }
+
+    @RequestMapping(value ="/user")
+    @Permission
+    @ResponseBody
+    public String user(@RequestParam(value="name") String name,
+                       @RequestParam(value="password") String pswd){
+        return name+"登录成功";
+    }
+
+
 }
