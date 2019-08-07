@@ -1,14 +1,17 @@
 package com.example.myframe.aop;
 
 import com.example.myframe.controller.TestController;
+import org.apache.catalina.Session;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 
+import org.omg.CORBA.Request;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import sun.reflect.annotation.AnnotationParser;
 
 import javax.security.auth.login.LoginException;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 实现切面控制
@@ -32,6 +36,8 @@ public class ControllerAspect {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private HttpServletRequest request;
     /**
      * 定义切点
      */
@@ -63,9 +69,10 @@ public class ControllerAspect {
             if (args == null) {
                 throw new LoginException("参数错误");
             }
-            String currentUser = args[0].toString();
+            //String currentUser = args[0].toString();
             //logger.info("访问用户，{}", currentUser);
-            if (!userService.isAdmin(currentUser)) {
+            String name=request.getSession().getAttribute("name").toString();
+            if (!userService.isAdmin(name)) {
                 return error();
                 //throw new LoginException("您不是管理员");
             } else {

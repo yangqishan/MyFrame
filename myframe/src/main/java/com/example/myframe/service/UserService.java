@@ -8,5 +8,5 @@ import java.util.List;
 public interface UserService {
     List<UserBean> getAll();
 
-    UserBean get();
+    UserBean get(String name);
 }

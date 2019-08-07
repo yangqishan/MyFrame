@@ -12,7 +12,7 @@ public interface UserDao extends BaseMapper<UserBean> {
 
     List<UserBean> getAll();
 
-    UserBean get();
+    UserBean get(String name);
 
 }
 

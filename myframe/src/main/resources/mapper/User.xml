@@ -8,8 +8,8 @@
     FROM
 	USER
     </select>
-	<select id="get" resultType="com.example.myframe.entity.UserBean">
-       SELECT * from user where name=#{name}
+	<select id="get" resultType="com.example.myframe.entity.UserBean" parameterType="String">
+       SELECT pswd from user where name=#{name}
 	</select>
 </mapper>
 
